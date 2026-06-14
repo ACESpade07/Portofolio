@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADIP Porto</title>
+<title>Andi Dhany Indra Pratama — Portfolio</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -81,6 +81,30 @@
 
   /* Cert card cursor */
   .cert-card { cursor: pointer; }
+
+  /* Mobile menu */
+  #mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  #mobile-menu.open {
+    max-height: 400px;
+  }
+
+  /* Burger icon animation */
+  .burger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #1e1f2b;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+  #burger-btn.open .burger-line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  #burger-btn.open .burger-line:nth-child(2) { opacity: 0; }
+  #burger-btn.open .burger-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 </style>
 </head>
 <body class="bg-[#f5f6fa] text-[#1e1f2b]">
@@ -95,6 +119,8 @@
   <header class="sticky top-0 z-50 bg-[#f5f6fa]/80 backdrop-blur border-b border-[#e2e4ec]">
     <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <span class="font-head font-bold text-lg">Andi Dhany Indra Pratama.</span>
+
+      <!-- Desktop menu -->
       <div class="hidden md:flex gap-8 items-center text-sm font-medium text-[#555770]">
         <a href="#about"        class="nav-link hover:text-[#6366f1] transition-colors">About</a>
         <a href="#experience"   class="nav-link hover:text-[#6366f1] transition-colors">Experience</a>
@@ -106,7 +132,29 @@
           CV
         </a>
       </div>
+
+      <!-- Burger button (mobile only) -->
+      <button id="burger-btn" class="flex md:hidden flex-col gap-[5px] p-2 rounded-md hover:bg-[#e2e4ec] transition-colors" aria-label="Toggle menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
     </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden bg-[#f5f6fa] border-t border-[#e2e4ec]">
+      <div class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-[#555770]">
+        <a href="#about"        class="mobile-nav-link hover:text-[#6366f1] transition-colors py-1">About</a>
+        <a href="#experience"   class="mobile-nav-link hover:text-[#6366f1] transition-colors py-1">Experience</a>
+        <a href="#projects"     class="mobile-nav-link hover:text-[#6366f1] transition-colors py-1">Projects</a>
+        <a href="#certificates" class="mobile-nav-link hover:text-[#6366f1] transition-colors py-1">Sertifikat</a>
+        <a href="#contact"      class="mobile-nav-link hover:text-[#6366f1] transition-colors py-1">Contact</a>
+        <a href="CV. Andi Dhany Indra Pratama.pdf" download
+           class="inline-block w-fit bg-[#1e1f2b] text-white font-semibold px-4 py-2 rounded-full hover:bg-[#6366f1] transition-colors">
+          CV
+        </a>
+      </div>
+    </div>
   </header>
 
   <!-- HERO -->
@@ -269,6 +317,7 @@
   <!-- CERTIFICATES -->
   <section id="certificates" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
     <h2 class="font-head font-bold text-3xl mb-10">Sertifikat</h2>
+    <p class="text-[#555770] text-sm mb-6">Klik pada kartu untuk melihat sertifikat.</p>
 
     <div class="marquee-wrapper">
       <div class="marquee-track" id="cert-track">
@@ -393,6 +442,22 @@
   </footer>
 
   <script>
+    // ── Burger menu ───────────────────────────────────────────────────────────
+    const burgerBtn  = document.getElementById('burger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    burgerBtn.addEventListener('click', () => {
+      burgerBtn.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        burgerBtn.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
     // ── Navbar active highlight ──────────────────────────────────────────────
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = [...navLinks].map(l => document.querySelector(l.getAttribute('href')));
