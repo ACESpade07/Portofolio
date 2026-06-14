@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Andi Dhany — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B1120;
+      --slate: #1E2D45;
+      --slate-light: #253550;
+      --teal: #00C9B1;
+      --teal-dim: rgba(0,201,177,0.12);
+      --teal-glow: rgba(0,201,177,0.35);
+      --white: #F0F6FF;
+      --gray: #8A9BB8;
+      --gray-light: #C4D0E3;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 6vw;
+      background: rgba(11,17,32,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,201,177,0.1);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      min-width: 10;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 6vw;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,201,177,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,201,177,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .hero-blob {
+      position: absolute; top: -10%; right: -5%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,201,177,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--teal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      max-width: 800px;
+    }
+    .hero-name span { color: var(--teal); }
+    .hero-terminal {
+      font-family: var(--mono);
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: var(--gray);
+      margin-bottom: 2.4rem;
+      min-height: 2em;
+    }
+    .hero-terminal .cursor {
+      display: inline-block;
+      width: 2px; height: 1.1em;
+      background: var(--teal);
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 0.75rem 1.8rem;
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none; border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-outline {
+      padding: 0.75rem 1.8rem;
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--teal-dim); }
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 6vw;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--gray);
+      letter-spacing: 0.12em;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .scroll-line {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 6vw; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--teal);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+    .section-title span { color: var(--teal); }
+    .divider {
+      width: 48px; height: 3px;
+      background: var(--teal);
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--slate); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-text p {
+      color: var(--gray-light);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+    .about-meta {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .meta-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--slate-light);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 6px 6px 0;
+    }
+    .meta-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+    }
+    .meta-value { font-size: 0.9rem; color: var(--white); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--navy); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--slate);
+      border: 1px solid rgba(0,201,177,0.12);
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .skill-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+    .skill-card-title {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--teal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      padding: 0.3rem 0.75rem;
+      background: var(--teal-dim);
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+    .tag.soft {
+      background: rgba(140,155,184,0.12);
+      color: var(--gray-light);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--slate); }
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--teal), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 3rem; }
+    .timeline-dot {
+      position: absolute; left: -2.5rem;
+      top: 6px;
+      width: 12px; height: 12px;
+      background: var(--navy);
+      border: 2px solid var(--teal);
+      border-radius: 50%;
+      transform: translateX(-5px);
+    }
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+    .timeline-org {
+      font-size: 0.88rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    .timeline-list { list-style: none; padding: 0; }
+    .timeline-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: var(--gray-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-list li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--teal);
+      font-size: 0.75rem;
+      top: 0.15em;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--navy); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+    .project-card {
+      background: var(--slate);
+      border: 1px solid rgba(0,201,177,0.12);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 0 32px var(--teal-glow);
+    }
+    .project-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .project-period {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .project-desc {
+      color: var(--gray-light);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.2rem;
+    }
+    .project-techs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tech-badge {
+      padding: 0.2rem 0.6rem;
+      background: var(--slate-light);
+      color: var(--gray-light);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      border-radius: 3px;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--slate);
+      text-align: center;
+    }
+    .contact-inner { max-width: 600px; margin: 0 auto; }
+    .contact-desc {
+      color: var(--gray-light);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .contact-links {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid rgba(0,201,177,0.25);
+      border-radius: 6px;
+      color: var(--gray-light);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .contact-link:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: var(--teal-dim);
+    }
+    .contact-link .icon { font-size: 1.1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 5vw; }
+      .nav-links { display: none; }
+      #hero { padding: 0 5vw; }
+      section { padding: 4rem 5vw; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">andi.dhany</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-eyebrow">// hello, world</div>
+  <h1 class="hero-name">Andi Dhany<br><span>Indra Pratama</span></h1>
+  <div class="hero-terminal">
+    <span id="typed-text"></span><span class="cursor"></span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn-primary">Lihat Proyek</a>
+    <a href="#contact" class="btn-outline">Hubungi Saya</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll down
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// 01</div>
+  <h2 class="section-title">Tentang <span>Saya</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Lulusan Teknik Informatika Universitas Hasanuddin dengan semangat tinggi di bidang pengembangan aplikasi web dan mobile. Saya menikmati proses membangun produk digital dari desain UI/UX hingga implementasi front-end maupun back-end.</p>
+      <p>Berkomitmen untuk terus belajar dan mengikuti perkembangan teknologi terkini, saya percaya bahwa teknologi yang baik harus inklusif dan dapat diakses oleh semua kalangan — terbukti dari implementasi fitur Disability Mode berbasis video bahasa isyarat pada salah satu proyek saya.</p>
+    </div>
+    <div class="about-meta">
+      <div class="meta-item">
+        <div class="meta-icon">🎓</div>
+        <div>
+          <div class="meta-label">Pendidikan</div>
+          <div class="meta-value">S1 Teknik Informatika — Universitas Hasanuddin (GPA 3.27)</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">📍</div>
+        <div>
+          <div class="meta-label">Lokasi</div>
+          <div class="meta-value">Makassar, Sulawesi Selatan</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">🌐</div>
+        <div>
+          <div class="meta-label">Bahasa</div>
+          <div class="meta-value">Indonesia, English</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">✉️</div>
+        <div>
+          <div class="meta-label">Email</div>
+          <div class="meta-value">andidhany272@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// 02</div>
+  <h2 class="section-title">Keahlian <span>Teknis</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">Front-End Development</div>
+      <div class="skill-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Mobile Development</div>
+      <div class="skill-tags">
+        <span class="tag">Flutter</span>
+        <span class="tag">Dart</span>
+        <span class="tag">TFLite</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">AI & Data</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">CNN</span>
+        <span class="tag">TensorFlow</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">UI/UX Design</div>
+      <div class="skill-tags">
+        <span class="tag">UI/UX</span>
+        <span class="tag">Flowchart</span>
+        <span class="tag">Prototyping</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="tag soft">Time Management</span>
+        <span class="tag soft">Adaptability</span>
+        <span class="tag soft">Problem Solving</span>
+        <span class="tag soft">Team Collaboration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// 03</div>
+  <h2 class="section-title">Pengalaman <span>Kerja</span></h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Nov 2025 – Mei 2026</div>
+      <div class="timeline-role">Staff Umum & Web Developer</div>
+      <div class="timeline-org">Kanwil Ditjen Imigrasi Sulawesi Selatan — Makassar</div>
+      <ul class="timeline-list">
+        <li>Membangun Website Sistem Informasi Perusahaan dan Layanan Digital imigrasi yang responsif dan inklusif.</li>
+        <li>Mengimplementasikan fitur Disability Mode berbasis video bahasa isyarat untuk aksesibilitas penyandang tuna rungu.</li>
+        <li>Menyiapkan dan memantau fasilitas operasional kantor serta kebutuhan kegiatan umum.</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Des 2023 – Mar 2024</div>
+      <div class="timeline-role">Front-End Developer (Magang)</div>
+      <div class="timeline-org">Badan Pendapatan Daerah Provinsi Sulawesi Selatan — Makassar</div>
+      <ul class="timeline-list">
+        <li>Menganalisis kebutuhan pengarsipan dan membuat flowchart UI untuk aplikasi pengarsipan berbasis web.</li>
+        <li>Mengimplementasikan tampilan UI menggunakan HTML, CSS, dan JavaScript.</li>
+        <li>Berkolaborasi dengan back-end developer untuk integrasi API ke antarmuka web.</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2022 – 2023</div>
+      <div class="timeline-role">Ketua Biro Informasi dan Komunikasi</div>
+      <div class="timeline-org">OKIF FT-UH — Universitas Hasanuddin</div>
+      <ul class="timeline-list">
+        <li>Mengelola seluruh media sosial OKIF FT-UH serta mendokumentasikan dan mempublikasikan kegiatan.</li>
+        <li>Menyajikan konten desain visual kreatif untuk penyebaran informasi.</li>
+        <li>Mengkoordinasikan seluruh komponen pendukung OKIF FT-UH.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 04</div>
+  <h2 class="section-title">Proyek <span>Unggulan</span></h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-icon">🍄</div>
+      <div class="project-period">Sept 2024 – Okt 2025</div>
+      <div class="project-title">Aplikasi Klasifikasi Jamur</div>
+      <div class="project-desc">Aplikasi mobile Android untuk mengklasifikasikan jenis jamur menggunakan algoritma Convolutional Neural Network (CNN). Model dikonversi ke format TFLite untuk integrasi langsung di perangkat.</div>
+      <div class="project-techs">
+        <span class="tech-badge">Flutter</span>
+        <span class="tech-badge">Dart</span>
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">CNN</span>
+        <span class="tech-badge">TFLite</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🌐</div>
+      <div class="project-period">Nov 2025 – Mei 2026</div>
+      <div class="project-title">Web Sistem Informasi Imigrasi</div>
+      <div class="project-desc">Website sistem informasi dan layanan digital Kanwil Ditjen Imigrasi Sulawesi Selatan. Menampilkan fitur inovatif Disability Mode berbasis video bahasa isyarat untuk inklusivitas penyandang tuna rungu.</div>
+      <div class="project-techs">
+        <span class="tech-badge">HTML</span>
+        <span class="tech-badge">CSS</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">API Integration</span>
+        <span class="tech-badge">Accessibility</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">📂</div>
+      <div class="project-period">Des 2023 – Mar 2024</div>
+      <div class="project-title">Aplikasi Pengarsipan Digital</div>
+      <div class="project-desc">Sistem pengarsipan berbasis web untuk Badan Pendapatan Daerah Sulawesi Selatan. Merancang UI dari flowchart hingga implementasi dan integrasi dengan back-end melalui REST API.</div>
+      <div class="project-techs">
+        <span class="tech-badge">HTML</span>
+        <span class="tech-badge">CSS</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">REST API</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// 05</div>
+  <h2 class="section-title">Mari <span>Terhubung</span></h2>
+  <div class="contact-inner">
+    <p class="contact-desc">Saya terbuka untuk peluang baru, kolaborasi proyek, atau sekadar berbagi ide seputar teknologi. Jangan ragu untuk menghubungi saya!</p>
+    <div class="contact-links">
+      <a href="mailto:andidhany272@gmail.com" class="contact-link">
+        <span class="icon">✉️</span> andidhany272@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/andi-dhany-indra-pratama-902a6b195" target="_blank" class="contact-link">
+        <span class="icon">💼</span> LinkedIn
+      </a>
+      <a href="tel:+6281242175034" class="contact-link">
+        <span class="icon">📱</span> +62 812 4217 5034
+      </a>
+    </div>
+    <a href="mailto:andidhany272@gmail.com" class="btn-primary">Kirim Pesan</a>
+  </div>
+</section>
+
+<footer>
+  <span>built with ♥ — Andi Dhany Indra Pratama © 2026</span>
+</footer>
+
+<script>
+  // Typing animation
+  const phrases = [
+    'Web & Mobile Developer',
+    'UI/UX Enthusiast',
+    'Machine Learning Explorer',
+    'Teknik Informatika — UNHAS',
+  ];
+  let phraseIndex = 0, charIndex = 0, isDeleting = false;
+  const el = document.getElementById('typed-text');
+
+  function type() {
+    const current = phrases[phraseIndex];
+    if (!isDeleting) {
+      el.textContent = '> ' + current.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === current.length) {
+        isDeleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      el.textContent = '> ' + current.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+    }
+    setTimeout(type, isDeleting ? 45 : 80);
+  }
+  type();
+
+  // Scroll-based nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--teal)' : '';
+    });
+  });
+</script>
+</body>
+</html>

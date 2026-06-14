@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADIP Porto</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .font-head { font-family: 'Space Grotesk', sans-serif; }
+  .accent-line { background: linear-gradient(90deg, #22d3ee, #6366f1); }
+  .nav-link {
+    position: relative;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: #6366f1;
+    border-bottom: 2px solid #6366f1;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { scrollbar-width: none; }
+
+  /* Marquee */
+  .marquee-wrapper { overflow-x: auto; overflow-y: hidden; cursor: grab; user-select: none; }
+  .marquee-wrapper::-webkit-scrollbar { display: none; }
+  .marquee-wrapper { scrollbar-width: none; }
+  .marquee-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* Lightbox */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 88vh;
+    border-radius: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    object-fit: contain;
+  }
+  #lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  #lightbox-close:hover { background: rgba(255,255,255,0.3); }
+
+  /* Cert card cursor */
+  .cert-card { cursor: pointer; }
+</style>
+</head>
+<body class="bg-[#f5f6fa] text-[#1e1f2b]">
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <span id="lightbox-close">✕</span>
+    <img id="lightbox-img" src="" alt="Sertifikat">
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-[#f5f6fa]/80 backdrop-blur border-b border-[#e2e4ec]">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <span class="font-head font-bold text-lg">Andi Dhany Indra Pratama.</span>
+      <div class="hidden md:flex gap-8 items-center text-sm font-medium text-[#555770]">
+        <a href="#about"        class="nav-link hover:text-[#6366f1] transition-colors">About</a>
+        <a href="#experience"   class="nav-link hover:text-[#6366f1] transition-colors">Experience</a>
+        <a href="#projects"     class="nav-link hover:text-[#6366f1] transition-colors">Projects</a>
+        <a href="#certificates" class="nav-link hover:text-[#6366f1] transition-colors">Sertifikat</a>
+        <a href="#contact"      class="nav-link hover:text-[#6366f1] transition-colors">Contact</a>
+        <a href="CV. Andi Dhany Indra Pratama.pdf" download
+           class="bg-[#1e1f2b] text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#6366f1] transition-colors">
+          CV
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-6 pt-20 pb-24 grid md:grid-cols-[1.3fr_0.7fr] gap-10 items-center">
+    <div>
+      <p class="font-head text-[#6366f1] font-semibold tracking-widest text-sm mb-3">HALO, SAYA</p>
+      <h1 class="font-head font-bold text-5xl md:text-6xl leading-[1.1]">
+        Andi Dhany<br>Indra Pratama
+      </h1>
+      <p class="mt-6 text-lg text-[#555770] max-w-xl">
+        Informatics Engineering graduate with a passion for web and mobile application development.
+        Skilled in UI/UX design, front-end and back-end development, and committed to continuous learning.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#projects"
+           class="bg-[#6366f1] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#4f51d6] transition-colors">
+          Lihat Proyek
+        </a>
+        <a href="CV. Andi Dhany Indra Pratama.pdf" download
+           class="border border-[#1e1f2b] text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#1e1f2b] hover:text-white transition-colors">
+          Download CV
+        </a>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="absolute -top-4 -left-4 w-full h-full rounded-3xl accent-line"></div>
+      <div class="relative rounded-3xl overflow-hidden aspect-[4/5] bg-[#dcdfee]">
+        <img src="foto.jpeg" alt="Foto Andi Dhany Indra Pratama" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Tentang Saya</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="md:col-span-2 bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-2">Pendidikan</h3>
+        <p class="text-[#6366f1] font-semibold">Hasanuddin University</p>
+        <p class="text-[#555770] text-sm mt-1">Bachelor of Informatics Engineering — 2020 to 2025</p>
+        <p class="text-[#555770] text-sm">GPA 3.27</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-2">Lokasi</h3>
+        <p class="text-[#555770] text-sm">Makassar, Sulawesi Selatan, Indonesia</p>
+      </div>
+
+      <div class="md:col-span-3 bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-2">Organisasi</h3>
+        <p class="text-[#6366f1] font-semibold">Organisasi Kemahasiswaan Informatika Fakultas Teknik Universitas Hasanuddin</p>
+        <p class="text-[#555770] text-sm mt-1 mb-3">Head of Information and Communication Bureau — 2022 to 2023</p>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Presenting content with creative visual designs for information dissemination.</li>
+          <li>Managing all OKIF FT-UH social media channels.</li>
+          <li>Documenting and publishing all OKIF FT-UH activities.</li>
+          <li>Coordinating with all supporting components to foster harmonious relationships.</li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3 bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-4">Tech Stack</h3>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">Front-End</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Tailwind CSS</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">JavaScript</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">Back-End</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">PHP</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Laravel</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">MySQL</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">AI & Machine Learning</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Python</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">TensorFlow</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">Tools</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Git</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">GitHub</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Figma</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Kaggle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Pengalaman Kerja</h2>
+    <div class="space-y-8">
+      <div class="bg-white rounded-2xl p-8 shadow-sm grid md:grid-cols-[1fr_3fr] gap-6">
+        <div>
+          <p class="font-head font-bold text-lg">Bapenda Provinsi Sulsel</p>
+          <p class="text-[#6366f1] text-sm font-semibold mt-1">Dec 2023 — Mar 2024</p>
+          <p class="text-[#555770] text-sm">Makassar, Sulawesi Selatan</p>
+        </div>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Analyze archiving needs and create flowcharts for the UI of a web-based archiving application.</li>
+          <li>Implement UI displays using HTML, CSS, and JavaScript.</li>
+          <li>Collaborated with back-end developers to integrate the API with the web interface.</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm grid md:grid-cols-[1fr_3fr] gap-6">
+        <div>
+          <p class="font-head font-bold text-lg">Kanwil Ditjen Imigrasi Sulsel</p>
+          <p class="text-[#6366f1] text-sm font-semibold mt-1">Nov 2025 — May 2026</p>
+          <p class="text-[#555770] text-sm">Makassar, Sulawesi Selatan</p>
+        </div>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Prepare supporting facilities for general activities such as meeting rooms, vehicles, and logistics.</li>
+          <li>Monitor facility usage to ensure efficiency and arrange routine maintenance of public facilities.</li>
+          <li>Assist with office operational needs.</li>
+          <li>Creating a Company Information System and Digital Services Website.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Proyek</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow-sm">
+        <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-4">Mobile App · Sept 2024 — Oct 2025</span>
+        <h3 class="font-head font-bold text-xl mb-2">Fungus Classification App</h3>
+        <p class="text-[#555770] text-sm mb-2">Hasanuddin University, Gowa</p>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Mobile application to classify mushroom types using a CNN algorithm.</li>
+          <li>Converted the trained model to TensorFlow Lite and integrated it into an Android app built with Flutter.</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm">
+        <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-4">Website · Nov 2025 — May 2026</span>
+        <h3 class="font-head font-bold text-xl mb-2">Company Info & Digital Services Web</h3>
+        <p class="text-[#555770] text-sm mb-2">South Sulawesi Regional Office, Directorate General of Immigration</p>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Integrated and easily accessible immigration information media.</li>
+          <li>User-friendly, responsive, and inclusive information system for all levels of society.</li>
+          <li>Sign language video-based Disability Mode for the deaf community.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Sertifikat</h2>
+
+    <div class="marquee-wrapper">
+      <div class="marquee-track" id="cert-track">
+
+        <!-- Card 1 -->
+        <div class="cert-card bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all flex-shrink-0 w-72 group"
+             data-img="Sertifikat CyberObs_page-0001.jpg">
+          <div class="aspect-[4/3] bg-[#eef0fb] overflow-hidden">
+            <img src="Sertifikat CyberObs_page-0001.jpg" alt="CyberOps Associate"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-3">2022</span>
+            <h3 class="font-head font-bold text-base mb-1 leading-snug">CyberOps Associate</h3>
+            <p class="text-[#555770] text-xs">Cisco Networking Academy</p>
+            <p class="mt-3 text-[#6366f1] text-xs font-semibold group-hover:underline">Lihat Sertifikat →</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="cert-card bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all flex-shrink-0 w-72 group"
+             data-img="Sertifikat CCNA_page-0001.jpg">
+          <div class="aspect-[4/3] bg-[#eef0fb] overflow-hidden">
+            <img src="Sertifikat CCNA_page-0001.jpg" alt="CCNA"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-3">2024</span>
+            <h3 class="font-head font-bold text-base mb-1 leading-snug">CCNAv7: Switching, Routing, and Wireless Essentials</h3>
+            <p class="text-[#555770] text-xs">Cisco Networking Academy</p>
+            <p class="mt-3 text-[#6366f1] text-xs font-semibold group-hover:underline">Lihat Sertifikat →</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="cert-card bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all flex-shrink-0 w-72 group"
+             data-img="Sertifikat Kemnaker_page-0001.jpg">
+          <div class="aspect-[4/3] bg-[#eef0fb] overflow-hidden">
+            <img src="Sertifikat Kemnaker_page-0001.jpg" alt="Kemnaker"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-3">2026</span>
+            <h3 class="font-head font-bold text-base mb-1 leading-snug">Sertifikat Program Pemagangan Kemnaker</h3>
+            <p class="text-[#555770] text-xs">Kementerian Ketenagakerjaan</p>
+            <p class="mt-3 text-[#6366f1] text-xs font-semibold group-hover:underline">Lihat Sertifikat →</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="cert-card bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all flex-shrink-0 w-72 group"
+             data-img="Sertifikat KANWIL.jpeg">
+          <div class="aspect-[4/3] bg-[#eef0fb] overflow-hidden">
+            <img src="Sertifikat KANWIL.jpeg" alt="Kanwil Imigrasi"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-3">2026</span>
+            <h3 class="font-head font-bold text-base mb-1 leading-snug">Sertifikat Magang Kanwil Ditjen Imigrasi Sulsel</h3>
+            <p class="text-[#555770] text-xs">Kantor Wilayah Ditjen Imigrasi Sulsel</p>
+            <p class="mt-3 text-[#6366f1] text-xs font-semibold group-hover:underline">Lihat Sertifikat →</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="cert-card bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all flex-shrink-0 w-72 group"
+             data-img="SERTIFIKAT Adaptability DHANAYYY_page-0001.jpg">
+          <div class="aspect-[4/3] bg-[#eef0fb] overflow-hidden">
+            <img src="SERTIFIKAT Adaptability DHANAYYY_page-0001.jpg" alt="Adaptability"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-3">2026</span>
+            <h3 class="font-head font-bold text-base mb-1 leading-snug">Adaptability</h3>
+            <p class="text-[#555770] text-xs">GNIK</p>
+            <p class="mt-3 text-[#6366f1] text-xs font-semibold group-hover:underline">Lihat Sertifikat →</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="cert-card bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all flex-shrink-0 w-72 group"
+             data-img="SERTIFIKAT Design Thinking DHANAYYY_page-0001.jpg">
+          <div class="aspect-[4/3] bg-[#eef0fb] overflow-hidden">
+            <img src="SERTIFIKAT Design Thinking DHANAYYY_page-0001.jpg" alt="Design Thinking"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-3">2026</span>
+            <h3 class="font-head font-bold text-base mb-1 leading-snug">Design Thinking</h3>
+            <p class="text-[#555770] text-xs">GNIK</p>
+            <p class="mt-3 text-[#6366f1] text-xs font-semibold group-hover:underline">Lihat Sertifikat →</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <div class="bg-[#1e1f2b] text-white rounded-3xl p-10 md:p-14 text-center">
+      <h2 class="font-head font-bold text-3xl md:text-4xl mb-4">Mari Berkolaborasi</h2>
+      <p class="text-[#b9bbd0] max-w-xl mx-auto mb-8">
+        Tertarik untuk bekerja sama atau sekadar berdiskusi seputar pengembangan web dan mobile? Jangan ragu untuk menghubungi saya.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm">
+        <a href="mailto:andidhany272@gmail.com"
+           class="bg-white text-[#1e1f2b] font-semibold px-5 py-3 rounded-full hover:bg-[#dcdfee] transition-colors">
+          andidhany272@gmail.com
+        </a>
+        <a href="tel:+6281242175034"
+           class="border border-white/30 font-semibold px-5 py-3 rounded-full hover:bg-white/10 transition-colors">
+          +62 812-4217-5034
+        </a>
+        <a href="https://www.linkedin.com/in/andi-dhany-indra-pratama-902a6b195" target="_blank"
+           class="border border-white/30 font-semibold px-5 py-3 rounded-full hover:bg-white/10 transition-colors">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <p class="text-center text-[#9698b0] text-sm mt-8">© 2026 Andi Dhany Indra Pratama. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ── Navbar active highlight ──────────────────────────────────────────────
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...navLinks].map(l => document.querySelector(l.getAttribute('href')));
+
+    function updateActiveLink() {
+      let current = sections[0];
+      sections.forEach(s => { if (s && s.getBoundingClientRect().top <= 120) current = s; });
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current.id));
+    }
+    navLinks.forEach(l => l.addEventListener('click', () => {
+      navLinks.forEach(x => x.classList.remove('active'));
+      l.classList.add('active');
+    }));
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+
+    // ── Marquee: duplicate cards + scroll-based infinite loop ────────────────
+    const track = document.getElementById('cert-track');
+    const wrapper = track ? track.closest('.marquee-wrapper') : null;
+    if (track) {
+      track.innerHTML += track.innerHTML;
+      track.style.animation = 'none'; // disable CSS animation, use JS scroll
+    }
+
+    if (wrapper && track) {
+      const halfWidth = () => track.scrollWidth / 2;
+
+      // Start midway so looping works in both directions
+      wrapper.scrollLeft = 0;
+
+      // Auto-scroll
+      let isPaused = false;
+      let rafId;
+
+      function autoScroll() {
+        if (!isPaused) {
+          wrapper.scrollLeft += 0.5;
+          if (wrapper.scrollLeft >= halfWidth()) {
+            wrapper.scrollLeft -= halfWidth();
+          }
+        }
+        rafId = requestAnimationFrame(autoScroll);
+      }
+      rafId = requestAnimationFrame(autoScroll);
+
+      // Seamless loop on any scroll (touchpad, scrollbar, etc.)
+      wrapper.addEventListener('scroll', () => {
+        if (wrapper.scrollLeft <= 0) {
+          wrapper.scrollLeft += halfWidth();
+        } else if (wrapper.scrollLeft >= halfWidth()) {
+          wrapper.scrollLeft -= halfWidth();
+        }
+      });
+
+      // Pause on hover / touch so user can swipe freely
+      wrapper.addEventListener('mouseenter', () => isPaused = true);
+      wrapper.addEventListener('mouseleave', () => isPaused = false);
+      wrapper.addEventListener('touchstart', () => isPaused = true, { passive: true });
+      wrapper.addEventListener('touchend', () => setTimeout(() => isPaused = false, 1000));
+
+      // Mouse drag
+      let isDown = false;
+      let startX = 0;
+      let startScroll = 0;
+      let isDragging = false;
+
+      wrapper.addEventListener('mousedown', e => {
+        isDown = true;
+        isDragging = false;
+        isPaused = true;
+        startX = e.pageX;
+        startScroll = wrapper.scrollLeft;
+        wrapper.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        const dx = e.pageX - startX;
+        if (Math.abs(dx) > 4) isDragging = true;
+        wrapper.scrollLeft = startScroll - dx;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        wrapper.style.cursor = 'grab';
+        setTimeout(() => isPaused = false, 800);
+      });
+
+      // Prevent lightbox open when dragging
+      document.querySelectorAll('.cert-card').forEach(card => {
+        card.addEventListener('click', e => {
+          if (isDragging) { e.stopImmediatePropagation(); isDragging = false; }
+        }, true);
+      });
+    }
+
+    // ── Lightbox ─────────────────────────────────────────────────────────────
+    const lightbox     = document.getElementById('lightbox');
+    const lightboxImg  = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.cert-card').forEach(card => {
+      card.addEventListener('click', () => {
+        lightboxImg.src = card.dataset.img;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andi Dhany Indra Pratama — Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .font-head { font-family: 'Space Grotesk', sans-serif; }
+  .accent-line { background: linear-gradient(90deg, #22d3ee, #6366f1); }
+  .nav-link {
+    position: relative;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: #6366f1;
+    border-bottom: 2px solid #6366f1;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { scrollbar-width: none; }
+
+  .marquee-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body class="bg-[#f5f6fa] text-[#1e1f2b]">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-[#f5f6fa]/80 backdrop-blur border-b border-[#e2e4ec]">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <span class="font-head font-bold text-lg">Andi Dhany Indra Pratama.</span>
+      <div class="hidden md:flex gap-8 items-center text-sm font-medium text-[#555770]">
+        <a href="#about" class="nav-link hover:text-[#6366f1] transition-colors">About</a>
+        <a href="#experience" class="nav-link hover:text-[#6366f1] transition-colors">Experience</a>
+        <a href="#projects" class="nav-link hover:text-[#6366f1] transition-colors">Projects</a>
+        <a href="#certificates" class="nav-link hover:text-[#6366f1] transition-colors">Sertifikat</a>
+        <a href="#contact" class="nav-link hover:text-[#6366f1] transition-colors">Contact</a>
+        <a href="CV. Andi Dhany Indra Pratama.pdf" download class="bg-[#1e1f2b] text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#6366f1] transition-colors">
+          CV
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-6 pt-20 pb-24 grid md:grid-cols-[1.3fr_0.7fr] gap-10 items-center">
+    <div>
+      <p class="font-head text-[#6366f1] font-semibold tracking-widest text-sm mb-3">HALO, SAYA</p>
+      <h1 class="font-head font-bold text-5xl md:text-6xl leading-[1.1]">
+        Andi Dhany<br>Indra Pratama
+      </h1>
+      <p class="mt-6 text-lg text-[#555770] max-w-xl">
+        Informatics Engineering graduate with a passion for web and mobile application development. Skilled in UI/UX design, front-end and back-end development, and committed to continuous learning.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#projects" class="bg-[#6366f1] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#4f51d6] transition-colors">
+          Lihat Proyek
+        </a>
+        <a href="CV. Andi Dhany Indra Pratama.pdf" download class="border border-[#1e1f2b] text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#1e1f2b] hover:text-white transition-colors">
+          Download CV
+        </a>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="absolute -top-4 -left-4 w-full h-full rounded-3xl accent-line"></div>
+      <div class="relative rounded-3xl overflow-hidden aspect-[4/5] bg-[#dcdfee]">
+        <img src="foto.jpeg" alt="Foto Andi Dhany Indra Pratama" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / EDUCATION -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Tentang Saya</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="md:col-span-2 bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-2">Pendidikan</h3>
+        <p class="text-[#6366f1] font-semibold">Hasanuddin University</p>
+        <p class="text-[#555770] text-sm mt-1">Bachelor of Informatics Engineering — 2020 to 2025</p>
+        <p class="text-[#555770] text-sm">GPA 3.27</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-2">Lokasi</h3>
+        <p class="text-[#555770] text-sm">Makassar, Sulawesi Selatan, Indonesia</p>
+      </div>
+
+      <div class="md:col-span-3 bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-2">Organisasi</h3>
+        <p class="text-[#6366f1] font-semibold">Organisasi Kemahasiswaan Informatika Fakultas Teknik Universitas Hasanuddin</p>
+        <p class="text-[#555770] text-sm mt-1 mb-3">Head of Information and Communication Bureau — 2022 to 2023</p>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Presenting content with creative visual designs for information dissemination.</li>
+          <li>Managing all OKIF FT-UH social media channels.</li>
+          <li>Documenting and publishing all OKIF FT-UH activities.</li>
+          <li>Coordinating with all supporting components to foster harmonious relationships.</li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3 bg-white rounded-2xl p-8 shadow-sm">
+        <h3 class="font-head font-bold text-xl mb-4">Tech Stack</h3>
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">Front-End</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Tailwind CSS</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">JavaScript</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">Back-End</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">PHP</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Laravel</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">MySQL</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">AI & Machine Learning</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Python</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">TensorFlow</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[#6366f1] font-semibold mb-2">Tools</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Git</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">GitHub</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Figma</span>
+              <span class="bg-[#eef0fb] text-[#1e1f2b] text-sm px-3 py-1.5 rounded-full">Kaggle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Pengalaman Kerja</h2>
+
+    <div class="space-y-8">
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm grid md:grid-cols-[1fr_3fr] gap-6">
+        <div>
+          <p class="font-head font-bold text-lg">Bapenda Provinsi Sulsel</p>
+          <p class="text-[#6366f1] text-sm font-semibold mt-1">Dec 2023 — Mar 2024</p>
+          <p class="text-[#555770] text-sm">Makassar, Sulawesi Selatan</p>
+        </div>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Analyze archiving needs and create flowcharts for the UI of a web-based archiving application.</li>
+          <li>Implement UI displays using HTML, CSS, and JavaScript.</li>
+          <li>Collaborated with back-end developers to integrate the API with the web interface.</li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm grid md:grid-cols-[1fr_3fr] gap-6">
+        <div>
+          <p class="font-head font-bold text-lg">Kanwil Ditjen Imigrasi Sulsel</p>
+          <p class="text-[#6366f1] text-sm font-semibold mt-1">Nov 2025 — May 2026</p>
+          <p class="text-[#555770] text-sm">Makassar, Sulawesi Selatan</p>
+        </div>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Prepare supporting facilities for general activities such as meeting rooms, vehicles, and logistics.</li>
+          <li>Monitor facility usage to ensure efficiency and arrange routine maintenance of public facilities.</li>
+          <li>Assist with office operational needs.</li>
+          <li>Creating a Company Information System and Digital Services Website.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Proyek</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm">
+        <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-4">Mobile App · Sept 2024 — Oct 2025</span>
+        <h3 class="font-head font-bold text-xl mb-2">Fungus Classification App</h3>
+        <p class="text-[#555770] text-sm mb-2">Hasanuddin University, Gowa</p>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Mobile application to classify mushroom types using a CNN algorithm.</li>
+          <li>Converted the trained model to TensorFlow Lite and integrated it into an Android app built with Flutter.</li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm">
+        <span class="inline-block bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1 rounded-full mb-4">Website · Nov 2025 — May 2026</span>
+        <h3 class="font-head font-bold text-xl mb-2">Company Info & Digital Services Web</h3>
+        <p class="text-[#555770] text-sm mb-2">South Sulawesi Regional Office, Directorate General of Immigration</p>
+        <ul class="text-[#555770] text-sm space-y-1 list-disc list-inside">
+          <li>Integrated and easily accessible immigration information media.</li>
+          <li>User-friendly, responsive, and inclusive information system for all levels of society.</li>
+          <li>Sign language video-based Disability Mode for the deaf community.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <h2 class="font-head font-bold text-3xl mb-10">Sertifikat</h2>
+
+    <div class="marquee-wrapper overflow-hidden">
+    <div id="cert-carousel" class="marquee-track">
+
+      <a href="Sertifikat CyberObs_page-0001.jpg" target="_blank" class="cert-card group bg-white rounded-2xl shadow-sm p-6 flex-shrink-0 w-80 snap-start flex flex-col justify-between gap-6 hover:shadow-md transition-shadow">
+        <div>
+          <h3 class="font-head font-bold text-lg leading-snug mb-2">CyberObs: Introduction to Cybersecurity</h3>
+          <p class="text-sm"><span class="text-[#6366f1] font-semibold">CyberObs</span> <span class="text-[#9698b0]">2024</span></p>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1.5 rounded-full">Cybersecurity</span>
+          <span class="cert-view text-sm font-semibold text-[#6366f1] px-3 py-1.5 rounded-full border border-transparent group-hover:border-[#1e1f2b] transition-colors">View →</span>
+        </div>
+      </a>
+
+      <a href="Sertifikat CCNA_page-0001.jpg" target="_blank" class="cert-card group bg-white rounded-2xl shadow-sm p-6 flex-shrink-0 w-80 snap-start flex flex-col justify-between gap-6 hover:shadow-md transition-shadow">
+        <div>
+          <h3 class="font-head font-bold text-lg leading-snug mb-2">CCNA: Introduction to Networks</h3>
+          <p class="text-sm"><span class="text-[#6366f1] font-semibold">Cisco Networking Academy</span> <span class="text-[#9698b0]">2024</span></p>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1.5 rounded-full">Networking</span>
+          <span class="cert-view text-sm font-semibold text-[#6366f1] px-3 py-1.5 rounded-full border border-transparent group-hover:border-[#1e1f2b] transition-colors">View →</span>
+        </div>
+      </a>
+
+      <a href="Sertifikat Kemnaker_page-0001.jpg" target="_blank" class="cert-card group bg-white rounded-2xl shadow-sm p-6 flex-shrink-0 w-80 snap-start flex flex-col justify-between gap-6 hover:shadow-md transition-shadow">
+        <div>
+          <h3 class="font-head font-bold text-lg leading-snug mb-2">Sertifikasi Kompetensi Kerja</h3>
+          <p class="text-sm"><span class="text-[#6366f1] font-semibold">Kementerian Ketenagakerjaan RI</span> <span class="text-[#9698b0]">2024</span></p>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1.5 rounded-full">Programming</span>
+          <span class="cert-view text-sm font-semibold text-[#6366f1] px-3 py-1.5 rounded-full border border-transparent group-hover:border-[#1e1f2b] transition-colors">View →</span>
+        </div>
+      </a>
+
+      <a href="Sertifikat KANWIL.jpeg" target="_blank" class="cert-card group bg-white rounded-2xl shadow-sm p-6 flex-shrink-0 w-80 snap-start flex flex-col justify-between gap-6 hover:shadow-md transition-shadow">
+        <div>
+          <h3 class="font-head font-bold text-lg leading-snug mb-2">Magang Kantor Wilayah Ditjen Imigrasi Sulsel</h3>
+          <p class="text-sm"><span class="text-[#6366f1] font-semibold">Kanwil Ditjen Imigrasi Sulsel</span> <span class="text-[#9698b0]">2026</span></p>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1.5 rounded-full">Internship</span>
+          <span class="cert-view text-sm font-semibold text-[#6366f1] px-3 py-1.5 rounded-full border border-transparent group-hover:border-[#1e1f2b] transition-colors">View →</span>
+        </div>
+      </a>
+
+      <a href="#" target="_blank" class="cert-card group bg-white rounded-2xl shadow-sm p-6 flex-shrink-0 w-80 snap-start flex flex-col justify-between gap-6 hover:shadow-md transition-shadow">
+        <div>
+          <h3 class="font-head font-bold text-lg leading-snug mb-2">Essential Skills: Design Thinking</h3>
+          <p class="text-sm"><span class="text-[#6366f1] font-semibold">GNIK</span> <span class="text-[#9698b0]">2026</span></p>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1.5 rounded-full">Soft Skill</span>
+          <span class="cert-view text-sm font-semibold text-[#6366f1] px-3 py-1.5 rounded-full border border-transparent group-hover:border-[#1e1f2b] transition-colors">View →</span>
+        </div>
+      </a>
+
+      <a href="#" target="_blank" class="cert-card group bg-white rounded-2xl shadow-sm p-6 flex-shrink-0 w-80 snap-start flex flex-col justify-between gap-6 hover:shadow-md transition-shadow">
+        <div>
+          <h3 class="font-head font-bold text-lg leading-snug mb-2">Latihan Kepemimpinan Manajemen Mahasiswa Tingkat Dasar</h3>
+          <p class="text-sm"><span class="text-[#6366f1] font-semibold">SMFTUH</span> <span class="text-[#9698b0]">2021</span></p>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="bg-[#eef0fb] text-[#6366f1] text-xs font-semibold px-3 py-1.5 rounded-full">Soft Skill</span>
+          <span class="cert-view text-sm font-semibold text-[#6366f1] px-3 py-1.5 rounded-full border border-transparent group-hover:border-[#1e1f2b] transition-colors">View →</span>
+        </div>
+      </a>
+
+    </div>
+    </div>
+  </section>
+  <footer id="contact" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#e2e4ec]">
+    <div class="bg-[#1e1f2b] text-white rounded-3xl p-10 md:p-14 text-center">
+      <h2 class="font-head font-bold text-3xl md:text-4xl mb-4">Mari Berkolaborasi</h2>
+      <p class="text-[#b9bbd0] max-w-xl mx-auto mb-8">
+        Tertarik untuk bekerja sama atau sekadar berdiskusi seputar pengembangan web dan mobile? Jangan ragu untuk menghubungi saya.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm">
+        <a href="mailto:andidhany272@gmail.com" class="bg-white text-[#1e1f2b] font-semibold px-5 py-3 rounded-full hover:bg-[#dcdfee] transition-colors">
+          andidhany272@gmail.com
+        </a>
+        <a href="tel:+6281242175034" class="border border-white/30 font-semibold px-5 py-3 rounded-full hover:bg-white/10 transition-colors">
+          +62 812-4217-5034
+        </a>
+        <a href="https://www.linkedin.com/in/andi-dhany-indra-pratama-902a6b195" target="_blank" class="border border-white/30 font-semibold px-5 py-3 rounded-full hover:bg-white/10 transition-colors">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <p class="text-center text-[#9698b0] text-sm mt-8">© 2026 Andi Dhany Indra Pratama. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href')));
+
+    function updateActiveLink() {
+      let current = sections[0];
+      sections.forEach(section => {
+        if (section && section.getBoundingClientRect().top <= 120) {
+          current = section;
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current.id);
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+
+    // Duplicate certificate cards for seamless infinite marquee
+    const certCarousel = document.getElementById('cert-carousel');
+    if (certCarousel) {
+      certCarousel.innerHTML += certCarousel.innerHTML;
+    }
+  </script>
+
+</body>
+</html>
